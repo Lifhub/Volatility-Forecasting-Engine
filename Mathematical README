@@ -1,0 +1,17 @@
+# Volatility Forecasting Engine
+
+This repository contains a specialized framework for modeling financial time-series volatility, developed as part of my preparation for advanced studies in Financial Engineering.
+
+## 📊 Project Overview
+The engine focuses on capturing stylized facts of financial markets, specifically **volatility clustering** and **leverage effects**, to improve the accuracy of market risk metrics.
+
+## 🛠 Features
+- **Data Acquisition:** Automated ETL from Yahoo Finance.
+- **Statistical Testing:** Implementation of Engle's ARCH test for heteroskedasticity.
+- **Volatility Modeling:** GARCH(1,1) and EGARCH specifications using Student's T distribution.
+- **Risk Application:** Daily 95% and 99% Parametric Value-at-Risk (VaR) forecasting.
+
+## 🚀 How to Use
+1. Clone the repository.
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the `Volatility_Engine.ipynb` Jupyter Notebook.
