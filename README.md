@@ -24,12 +24,12 @@ To forecast potential losses, we utilize the conditional volatility $\sigma_t$ a
 
 $$VaR_{1-\alpha} = \mu + \sigma_t \times t^{-1}_{\nu}(\alpha)$$
 
-Technical Stack
-Language: Python
+### Technical Stack
+- **Language:** Python
 
-Quantitative Libraries: arch (GARCH modeling), yfinance (market data), pandas, numpy, matplotlib.
+- **Quantitative Libraries:** `arch` (GARCH modeling), `yfinance` (market data), `pandas`, `numpy`, `matplotlib`.
 
-Methodology: Maximum Likelihood Estimation (MLE), Time-Series Backtesting.
+- **Methodology:** Maximum Likelihood Estimation (MLE), Time-Series Backtesting.
 
-Note on Data Scaling
+**Note on Data Scaling**
 To ensure numerical stability and convergence of the GARCH optimizer, log returns were scaled by a factor of 100 ($r_t$ × 100), as recommended for low-volatility financial time series.
