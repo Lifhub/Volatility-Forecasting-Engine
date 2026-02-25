@@ -1,20 +1,36 @@
-# Volatility Forecasting Engine
+Quantitative Risk Framework: Volatility Modeling & VaR Forecasting
+Project Overview
+This repository features a comprehensive quantitative framework for modeling time-varying volatility and assessing market risk. Utilizing the GARCH(1,1) specification, this engine analyzes the stylized facts of financial time series, such as volatility clustering and fat-tailed distributions. The project concludes with a Value-at-Risk (VaR) backtesting suite to validate model performance under different market regimes.
 
-This repository contains a specialized framework for modeling financial time-series volatility, developed as part of my preparation for advanced studies in Financial Engineering at Université Paris Dauphine | PSL.
+Key Highlights
+Volatility Clustering: Modeled the persistence of market shocks using GARCH specifications, confirming that $α+β≈1$.
 
-##  Project Overview
-The engine focuses on capturing stylized facts of financial markets, specifically **volatility clustering** and **leverage effects**, to improve the accuracy of market risk metrics.
+Fat-Tail Accounting: Implemented the Student's t-distribution for the error term to better capture the excess kurtosis ($ν$) inherent in equity markets, specifically for high-growth assets like Nvidia (NVDA).
 
-##  Features
-- **Data Acquisition:** Automated ETL from Yahoo Finance using `yfinance`.
-- **Statistical Testing:** Implementation of Engle's ARCH test for heteroskedasticity.
-- **Volatility Modeling:** GARCH(1,1) and EGARCH specifications using Student's T distribution.
-- **Risk Application:** Daily 95% and 99% Parametric Value-at-Risk (VaR) forecasting and backtesting.
+Risk Metrics: Generated daily 95% Parametric VaR forecasts.
 
-##  How to Use
-1. Clone the repository.
-2. Install dependencies: `pip install -r requirements.txt`
-3. Run the `Volatility_Engine.ipynb` Jupyter Notebook to view the full analysis and visualizations.
+Backtesting Rigor: Evaluated model accuracy by calculating the Breach Ratio, ensuring the empirical failure rate aligns with the theoretical confidence level.
 
-##  Key Methodology
-The project utilizes the `arch` library to estimate conditional variance. The primary goal is to demonstrate the persistence of shocks in financial returns and validate the model's predictive power via VaR backtesting.
+### **Mathematical Methodology**
+
+#### **1. GARCH(1,1) Specification**
+We model the time-varying nature of market risk where the conditional variance $\sigma^2_t$ is dependent on a constant intercept, past shocks (ARCH), and past variances (GARCH):
+
+$$\sigma^2_t = \omega + \alpha \epsilon^2_{t-1} + \beta \sigma^2_{t-1}$$
+
+
+
+#### **2. Parametric Value-at-Risk (VaR)**
+To forecast potential losses, we utilize the conditional volatility $\sigma_t$ and the inverse cumulative distribution function of the Student's t-distribution ($t^{-1}_{\nu}$) to account for fat tails ($\nu$):
+
+$$VaR_{1-\alpha} = \mu + \sigma_t \times t^{-1}_{\nu}(\alpha)$$
+
+Technical Stack
+Language: Python
+
+Quantitative Libraries: arch (GARCH modeling), yfinance (market data), pandas, numpy, matplotlib.
+
+Methodology: Maximum Likelihood Estimation (MLE), Time-Series Backtesting.
+
+Note on Data Scaling
+To ensure numerical stability and convergence of the GARCH optimizer, log returns were scaled by a factor of 100 ($r_t$ × 100), as recommended for low-volatility financial time series.
